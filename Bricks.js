@@ -1,9 +1,9 @@
-var brickRowCount = 4;
-var brickColumnCount = 9;
+var brickRowCount = 4;//4
+var brickColumnCount = 9;//9
 var brickWidth = 75;
 var brickHeight = 30;
 var brickPadding = 10;
-var brickOffsetTop = 30;
+var brickOffsetTop = 40;
 var brickOffsetLeft = 17.5;
 var bricks = [];
 var k = [255,0,0];
@@ -13,15 +13,18 @@ var score = 0;
 var Plus = [];
 
 var bricks = [];
-for(c=0; c<brickColumnCount; c++) {
-    bricks[c] = [];
-	Plus[c] = [];
-    for(r=0; r<brickRowCount; r++) {
-        bricks[c][r] = { x: 0, y: 0, status: 1 };
-		Plus[c][r] = {a: 0};
-    }
-}
 
+function bricksnull(){
+	for(c=0; c<brickColumnCount; c++) {
+		bricks[c] = [];
+		Plus[c] = [];
+		for(r=0; r<brickRowCount; r++) {
+			bricks[c][r] = { x: 0, y: 0, status: 1 };
+			Plus[c][r] = {a: 0};
+		}
+	}
+}
+bricksnull();
 function drawBricks() {
 	if(a==1){a=0;k=[0,0,0];k[K]=255;K++;if(K>2){K=0}}
     for(c=0; c<brickColumnCount; c++) {
@@ -42,8 +45,7 @@ function drawBricks() {
 					b.status = 0;
 					score++;
 					if(score == brickRowCount*brickColumnCount) {
-                        alert("YOU WIN, CONGRATULATIONS!!!");
-                        document.location.reload();
+						win=1;
                     }
 				}
 			}else if(b.status==0){
