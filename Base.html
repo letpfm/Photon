@@ -3,15 +3,29 @@
     <meta charset="utf-8" />
     <title>Фотон</title>
     <style>
-	h1 {
+	A {
+		text-decoration: none;
+		color:#0095DD
+	} 
+	A:hover { 
+		text-decoration: underline;
+		color: red;
+	}
+	.txt2 {
     position: absolute;
     bottom: 0;
 	right: 10px;
+	text-shadow: red 0 0 10px;
+	color:#0095DD
+	}
+	.txt3 {
+    position: absolute;
+	left: 48%;
+	top: -3px;
 	}
 	.text {
 	font-family: Comic Sans MS;
 	text-align:  center;
-    text-shadow: red 0 0 10px;
 	} 
 	html{ background: url(фон.jpg); no-repeat; background-size: 100%;}
 	* { padding: 0; margin: 0; }
@@ -19,43 +33,67 @@
     </style>
 </head>
 <body>
-
 <canvas id="myCanvas" width="800" height="600" style='border:5px solid'></canvas>
 <div class="text">
-<h1 style="color:#0095DD">Автор: Егор Зюзин <a href="https://vk.com/we404"><img src="vk.png" width="50" height="50" alt="Пример"></a></h1>
+<h1 class='txt3'><pre><big><b><a href="#" onclick='return clicknull()'>⟲</a>		<a href="#" style="color: #ffd700" onclick="return clickwin();">♕WIN♔</a></b></big></pre></h1>
+<h1 class="txt2">Автор: Егор Зюзин <a href="https://vk.com/we404"><img src="vk.png" width="50" height="50" alt="Пример"></a></h1>
 </div>
 <script src="Menu.js"></script>
-<script src="Boll.js"></script>
+<script src="Ball.js"></script>
 <script src="Paddle.js"></script>
 <script src="Bricks.js"></script>
 <script src="WIN.js"></script>
 <script>
-var win=0;
+var win = 0;
+
+function clicknull(){
+	alert('Restart');
+	gamenull()
+	return false;
+}
+
+function clickwin() {
+	win = 1;
+	color();
+	return false;
+}
 
 function gamenull(){
-	alert('GAME OVER'+'\n'+" Score: "+score);
 	bricksnull();
 	x = canvas.width/2;
 	y = canvas.height-36;
-	dx = 3.5;
-	dy = -3.5;
-	paddleX = (canvas.width-paddleWidth)/2;
+	dx = 6;
+	dy = -7;
+	A[4].y=0;
+	A[4].a=0;
 	lives = 4;
 	score = 0;
+	rightPressed = false;
+	leftPressed = false;
+	color();
+	win=0;
+	livesh='16';
+	livesx=160;
+	livesy=19;
+	wa=0;
+	wt='ПОБЕДА!!';
 }
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 	if(win==0){
-		random();
+		ballrect();
 		Menu();
 		drawBricks();
 		drawPaddle();
 	}else{
 		if(wa<900){WIN();}
 		Win();
+		Menu();
 	}
+	requestAnimationFrame(draw);
 }
-setInterval(draw, 10);
+
+draw();
 </script>
 </body>
 </html>

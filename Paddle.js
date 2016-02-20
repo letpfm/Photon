@@ -6,6 +6,9 @@ var leftPressed = false;
 var i = [0,0,0];
 var I = 0;
 
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
@@ -21,15 +24,11 @@ function drawPaddle() {
 	}
 	
 	if (rightPressed && paddleX < canvas.width-paddleWidth) {
-		paddleX += 7;
+		paddleX += 9;
 	} else if (leftPressed && paddleX > 0) {
-		paddleX -= 7;
+		paddleX -= 9;
 	}
 }
-
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-document.addEventListener("mousemove", mouseMoveHandler, false);
 
 function keyDownHandler(e) {
     if (e.keyCode == 39) {
@@ -45,12 +44,5 @@ function keyUpHandler(e) {
         rightPressed = false;
     } else if (e.keyCode == 37) {
         leftPressed = false;
-    }
-}
-
-function mouseMoveHandler(e) {
-    var relativeX = e.clientX - canvas.offsetLeft;
-    if(relativeX > 0 && relativeX < canvas.width) {
-        paddleX = relativeX - paddleWidth/2;
     }
 }

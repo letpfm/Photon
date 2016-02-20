@@ -11,11 +11,11 @@ function WIN(){
 	ctx.fillStyle = "#0095DD";
 	ctx.fillText(wt, wx, wy);
 	
-	if(wx+wdx>canvas.width-wt.length*wh/2-50||wx+wdx<50){wdx=-wdx*Math.random();}
-	if(wy+wdy<wh+50||wy+wdy>canvas.height-50){wdy=-wdy*Math.random();}
+	if(wx+wdx>canvas.width-400||wx+wdx<50){wdx=-wdx*Math.random();}
+	if(wy+wdy<wh+85||wy+wdy>canvas.height-50){wdy=-wdy*Math.random();}
     
-	if(wdx>4){wdx--;}else if(wdx<-4){wdx++;}
-	if(wdy>4){wdy--;}else if(wdy<-4){wdy++;}
+	if(wdx>8){wdx--;}else if(wdx<-8){wdx++;}
+	if(wdy>8){wdy--;}else if(wdy<-8){wdy++;}
 	
 	wx+=wdx;
 	wy+=wdy;
